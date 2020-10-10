@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+import Heroes from "./components/Heroes";
 
 function App() {
+  const [ExcData, setExcData] = useState([]);
+  const [IsLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios(
+        "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json"
+      );
+      setExcData(response.data);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {IsLoading ? (
+        "Data is Loading..."
+      ) : (
+        <Heroes
+          data={ExcData}
+        />
+      )}
     </div>
   );
 }
