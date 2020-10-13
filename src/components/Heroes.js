@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Hero from "./Hero";
 
 function Heroes(props) {
-  const [Bio, setBio] = useState("");
+  const [Bio, setBio] = useState([]);
+  const [Display, setDisplay] = useState(false)
 
   const content = props.data.map((Hero) => (
     <div
       onClick={() => {
         setBio(Hero);
-        console.log (Bio)
+        setDisplay(!Display);
+        console.log (Bio.powerstats?.power)
       }}
       className="single_hero_cont"
       key={Hero.id}
@@ -20,7 +22,7 @@ function Heroes(props) {
 
   return (
     <div className="heroes_cont">
-      <Hero BioData={Bio} />
+      <Hero Display={Display} BioData={Bio} />
       {content}
     </div>
   );
