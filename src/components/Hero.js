@@ -12,16 +12,19 @@ function Hero(props) {
   right:0;
   bottom:0;
   left:0;
-  background-color: rgba(0,255,255,0.1);
+  background-color: rgba(0,255,255,0.5);
 
 `;
 
 console.log(props.Display);
+console.log(props.updateDisplay);
+
 
   return (
     <HeroAbsolute showBio={props.Display}>
       <div className="hero_bio_cont">
-        <h1>{props.BioData.name}</h1>
+        <h1 onClick= {() => props.updateDisplay} >{props.BioData.name}</h1>
+        <button>Close</button>
         <div className="hero_bio_appearance">
           <div>
             <img></img>
