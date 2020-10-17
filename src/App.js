@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import Heroes from "./components/Heroes";
+import styled from "styled-components";
+import Loader from "./components/Loader"
+import Filter from "./components/Filter"
 
 function App() {
   const [ExcData, setExcData] = useState([]);
@@ -20,16 +23,17 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {IsLoading ? (
-        "Data is Loading..."
-      ) : (
-        <Heroes
-          data={ExcData}
-        />
-      )}
-    </div>
+    <MainDiv>
+      <Filter/>
+      {IsLoading ? <Loader/> : <Heroes data={ExcData} />}
+    </MainDiv>
   );
 }
 
+const MainDiv = styled.div`
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+`;
 export default App;

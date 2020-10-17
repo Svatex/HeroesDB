@@ -1,27 +1,17 @@
 import React, { useState } from "react";
 import Hero from "./Hero";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 function Heroes(props) {
   const [Bio, setBio] = useState([]);
   const [Display, setDisplay] = useState(false);
 
-  const SingleHeroCont = styled.div`
-  display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    padding: 10px;
-    align-items: center;
-  `
-
   const content = props.data.map((Hero) => (
     <SingleHeroCont
       onClick={() => {
         setBio(Hero);
-        setDisplay(!Display);
-        console.log(Bio.powerstats?.power);
+        setDisplay(true);
       }}
-      className="single_hero_cont"
       key={Hero.id}
     >
       <h1>{Hero.name}</h1>
@@ -31,14 +21,33 @@ function Heroes(props) {
 
   const updateDisplay = () => {
     setDisplay(false);
-  }
+  };
 
   return (
-    <div className="heroes_cont">
+    <HeroesCont>
       <Hero updateDisplay={updateDisplay} Display={Display} BioData={Bio} />
       {content}
-    </div>
+    </HeroesCont>
   );
 }
+
+const SingleHeroCont = styled.div`
+  font-family: "Oswald", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 10px;
+  align-items: center;
+`;
+
+const HeroesCont = styled.div`
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
 
 export default Heroes;
