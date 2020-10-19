@@ -9,6 +9,7 @@ import Filter from "./components/Filter"
 function App() {
   const [ExcData, setExcData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
+  const [Input, setInput] = useState("")
 
   useEffect(() => {
     async function fetchData() {
@@ -22,12 +23,16 @@ function App() {
     fetchData();
   }, []);
 
+  function search (heroes) {
+    return heroes.filter((hero) => hero.name.toLowerCase().indexOf(Input) > -1)
+  }
+
   return (
     <MainDiv>
-      <Filter/>
-      {IsLoading ? <Loader/> : <Heroes data={ExcData} />}
+      <input type='text' placeholder='Serch for Hero' value={Input} onChange={(e) => setInput(e.target.value.toLowerCase())}/>
+      {IsLoading ? <Loader/> : <Heroes data={search(ExcData)} />}
     </MainDiv>
-  );
+  ); 
 }
 
 const MainDiv = styled.div`
