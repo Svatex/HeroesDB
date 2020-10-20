@@ -36,7 +36,7 @@ const SingleHeroCont = styled.div`
 
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin: 10px 5px 0 5px;
   padding: 10px;
   align-items: center;
 `;
@@ -48,6 +48,7 @@ const HeroesCont = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 2;
 `;
 
 export default Heroes;
