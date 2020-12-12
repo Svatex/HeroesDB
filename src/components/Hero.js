@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BsShield } from "react-icons/bs";
 import { BiBrain } from "react-icons/bi";
-import { FaFistRaised } from "react-icons/fa";
+import { FaFistRaised, FaWindowClose } from "react-icons/fa";
 
 function Hero({ Display, updateDisplay, BioData }) {
   return (
@@ -55,7 +55,9 @@ function Hero({ Display, updateDisplay, BioData }) {
             {BioData.appearance?.height[1]}
           </p>
         </HeroAppearance>
-        <CloseButton onClick={updateDisplay}>Close</CloseButton>
+        <CloseButton>
+          <FaWindowClose onClick={updateDisplay} size="2em" color="white" />
+        </CloseButton>
       </HeroBioCont>
     </HeroAbsolute>
   );
@@ -86,23 +88,44 @@ const HeroBioCont = styled.div`
   left: 0;
   right: 0;
   margin-left: auto;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-  height: 50vh;
   margin-right: auto;
-  border: solid 2px black;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  height: 50vh;
+  border: solid 2px white;
+  color: white;
+
+  @media (max-width: 1000px) {
+    width: 70%;
+  height: 50vh;
+  }
+
+  @media (max-width: 550px) {
+    width: 80%;
+  height: 50vh;
+  }
+
+  @media (max-width: 420px) {
+    width: 99%;
+  height: 50vh;
+  }
 `;
 
 const HeroStats = styled.div`
   grid-area: powerstats;
+  padding: 10px;
 `;
 const PowerStats = styled.div`
   display: flex;
+  justify-content: space-around;
+  margin: 3px;
 `;
 
 const HeroAppearance = styled.div`
   grid-area: appearance;
+  padding: 10px;
+  font-family: "Oswald", sans-serif;
 `;
 
 const Name = styled.div`
@@ -115,8 +138,15 @@ const Name = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5px;
+  right: 5px;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  background-color: transparent;
 `;
 
 export default Hero;

@@ -3,13 +3,12 @@ import axios from "axios";
 import "./App.css";
 import Heroes from "./components/Heroes";
 import styled from "styled-components";
-import Loader from "./components/Loader"
-import Filter from "./components/Filter"
+import Loader from "./components/Loader";
 
 function App() {
   const [ExcData, setExcData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
-  const [Input, setInput] = useState("")
+  const [Input, setInput] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -23,22 +22,42 @@ function App() {
     fetchData();
   }, []);
 
-  function search (heroes) {
-    return heroes.filter((hero) => hero.name.toLowerCase().indexOf(Input) > -1)
+  function search(heroes) {
+    return heroes.filter((hero) => hero.name.toLowerCase().indexOf(Input) > -1);
   }
 
   return (
     <MainDiv>
-      <input type='text' placeholder='Serch for Hero' value={Input} onChange={(e) => setInput(e.target.value.toLowerCase())}/>
-      {IsLoading ? <Loader/> : <Heroes data={search(ExcData)} />}
+      <Header>Hero<span>DB</span></Header>
+      <HeroInput
+        type="text"
+        placeholder="Search for Hero"
+        value={Input}
+        onChange={(e) => setInput(e.target.value.toLowerCase())}
+      />
+      {IsLoading ? <Loader /> : <Heroes data={search(ExcData)} />}
     </MainDiv>
-  ); 
+  );
 }
 
 const MainDiv = styled.div`
-display:flex;
-flex-direction: column;
-justify-content:center;
-align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Header = styled.div`
+  font-family: "Russo One", sans-serif;
+  font-size: 120px;
+  padding: 10px;
+`;
+
+const HeroInput = styled.input`
+  margin: 10px auto 30px auto;
+  padding: 10px;
+  outline: none;
+  width: 35%;
+  color: white;
 `;
 export default App;
