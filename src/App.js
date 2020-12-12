@@ -28,7 +28,9 @@ function App() {
 
   return (
     <MainDiv>
-      <Header>Hero<span>DB</span></Header>
+      <Header>
+        Hero<HeaderSpan>DB</HeaderSpan>
+      </Header>
       <HeroInput
         type="text"
         placeholder="Search for Hero"
@@ -49,15 +51,25 @@ const MainDiv = styled.div`
 
 const Header = styled.div`
   font-family: "Russo One", sans-serif;
+  color: white;
   font-size: 120px;
   padding: 10px;
+  text-shadow: 4px 4px black;
+`;
+
+const HeaderSpan = styled.span`
+  color: #e2b400;
 `;
 
 const HeroInput = styled.input`
+  font-size: 15px;
   margin: 10px auto 30px auto;
-  padding: 10px;
+  padding: 12px;
   outline: none;
   width: 35%;
   color: white;
+  background-color: #6b6b6b;
+  border-radius: 10px;
+  border: 2px black solid;
 `;
 export default App;

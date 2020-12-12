@@ -5,6 +5,11 @@
   background-color: rgb(64, 64, 64);
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 0.5; 
+}
+
 
 
 .lds-spinner {
